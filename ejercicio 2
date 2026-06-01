@@ -1,0 +1,33 @@
+class Triangulo {
+private:
+    double base;
+    double altura;
+
+public:
+    // Constructor
+    Triangulo(double b, double h) {
+        base = b;
+        altura = h;
+    }
+
+    // Metodo para calcular el area
+    double calcularArea() {
+        return (base * altura) / 2.0;
+    }
+
+    void mostrarDatos() {
+        cout << "Triangulo -> Area: " << calcularArea() << endl;
+    }
+};
+
+int main() {
+    // Probar clase Rectangulo
+    Rectangulo r1(10.5, 5.0);
+    r1.mostrarDatos();
+
+    // Probar clase Triangulo
+    Triangulo t1(8.0, 4.0);
+    t1.mostrarDatos();
+
+    return 0;
+}
