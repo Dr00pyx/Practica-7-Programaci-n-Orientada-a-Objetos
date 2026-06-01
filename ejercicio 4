@@ -1,0 +1,119 @@
+#include <iostream>
+using namespace std;
+
+class Calculadora {
+private:
+    float n1;       // primer operando
+    float n2;       // segundo operando
+    char op;        // operador
+    int N;          // tamano de memoria
+    float* memoria; // arreglo dinamico
+    int nmem;       // cantidad de valores guardados
+
+public:
+    // constructor por defecto
+    Calculadora() {
+        n1 = n2 = 0;
+        op = '+';
+        N = 100;
+        memoria = new float[N];
+        nmem = 0;
+    }
+
+    // constructor con parametros
+    Calculadora(float a, float b, char o) {
+        n1 = a;
+        n2 = b;
+        op = o;
+        N = 100;
+        memoria = new float[N];
+        nmem = 0;
+    }
+
+    // destructor
+    ~Calculadora() {
+        delete[] memoria;
+    }
+
+    // ingresa valores por teclado
+    void ingresar() {
+        cout << "Ingrese n1: ";
+        cin >> n1;
+        cout << "Ingrese n2: ";
+        cin >> n2;
+        cout << "Ingrese operador (+, -, *, /): ";
+        cin >> op;
+    }
+
+    // realiza la operacion y guarda resultado
+    void calcular() {
+        float resultado;
+        switch (op) {
+            case '+': 
+                resultado = n1 + n2;
+                break;
+            case '-': 
+                resultado = n1 - n2;
+                break;
+            case '*': 
+                resultado = n1 * n2;
+                break;
+            case '/':
+                if (n2 != 0) {
+                    resultado = n1 / n2;
+                } else {
+                    cout << "Error: division por cero" << endl;
+                    return;
+                }
+                break;
+            default:
+                cout << "Operador invalido" << endl;
+                return;
+        }
+
+        cout << "Resultado: " << resultado << endl;
+        
+        // guardar en memoria
+        if (nmem < N) {
+            memoria[nmem++] = resultado;
+        }
+    }
+
+    // setters
+    void setn1(float a) { n1 = a; }
+    void setn2(float b) { n2 = b; }
+    void setop(char o) { op = o; }
+
+    // getters
+    float getn1() { return n1; }
+    float getn2() { return n2; }
+    char getop() { return op; }
+
+    // muestra la operacion
+    void operacion() {
+        cout << n1 << " " << op << " " << n2 << endl;
+    }
+
+    // limpia memoria
+    void limpiarmemoria() {
+        nmem = 0;
+        cout << "Memoria limpiada" << endl;
+    }
+
+    // mostrar memoria
+    void mostrarmemoria() {
+        cout << "Valores en memoria: " << endl;
+        for (int i = 0; i < nmem; i++) {
+            cout << memoria[i] << endl;
+        }
+    }
+};
+
+int main() {
+    Calculadora calc;
+    calc.ingresar();
+    calc.operacion();
+    calc.calcular();
+    calc.mostrarmemoria();
+    return 0;
+}
