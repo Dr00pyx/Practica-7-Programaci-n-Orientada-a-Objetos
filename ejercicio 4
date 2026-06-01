@@ -1,0 +1,87 @@
+#include <iostream>
+#include <cmath> // Para fabs (valor absoluto)
+using namespace std;
+
+class CReal {
+private:
+    double num; // Dato miembro
+
+public:
+    // Constructores
+    CReal() { 
+        num = 0.0; 
+    }
+    CReal(double n) { 
+        num = n; 
+    }
+    CReal(const CReal &r) { 
+        num = r.num; 
+    } // Constructor por copia
+
+    void imprimir() {
+        cout << num << endl;
+    }
+
+    char getSigno() {
+        return (num >= 0) ? '+' : '-';
+    }
+
+    void separar() {
+        char signo = getSigno();
+        double valorAbsoluto = fabs(num);
+        long parteEntera = (long)valorAbsoluto;
+        double parteDecimal = valorAbsoluto - parteEntera;
+
+        cout << "Signo: " << signo << endl;
+        cout << "Parte entera: " << parteEntera << endl;
+        cout << "Parte decimal: " << parteDecimal << endl;
+    }
+
+    // Operaciones aritmeticas
+    CReal sumar(CReal a, CReal b) {
+        return CReal(a.num + b.num);
+    }
+
+    CReal restar(CReal a, CReal b) {
+        return CReal(a.num - b.num);
+    }
+
+    CReal multiplicar(CReal a, CReal b) {
+        return CReal(a.num * b.num);
+    }
+
+    CReal dividir(CReal a, CReal b) {
+        if (b.num != 0) {
+            return CReal(a.num / b.num);
+        } else {
+            cout << "Error: Division por cero." << endl;
+            return CReal(0);
+        }
+    }
+};
+
+int main() {
+    // Creamos objetos para probar
+    CReal n1(-2.541);
+    CReal n2(1.2);
+    CReal calc; // Objeto para usar los metodos de calculo
+
+    cout << "--- Datos de n1 ---" << endl;
+    n1.imprimir();
+    n1.separar();
+
+    cout << "\n--- Datos de n2 ---" << endl;
+    n2.imprimir();
+    n2.separar();
+
+    cout << "\n--- Operaciones ---" << endl;
+    CReal suma = calc.sumar(n1, n2);
+    cout << "Suma: "; 
+    suma.imprimir();
+
+    CReal producto = calc.multiplicar(n1, n2);
+    cout << "Producto: "; 
+    producto.imprimir();
+
+    return 0;
+}
