@@ -1,0 +1,30 @@
+  #include <iostream>
+using namespace std;
+
+// Class Rectangulo
+class Rectangulo {
+private:
+    double base;
+    double altura;
+
+public:
+    // Constructor
+    Rectangulo(double b, double h) {
+        base = b;
+        altura = h;
+    }
+
+    // Metodos para calcular
+    double calcularArea() {
+        return base * altura;
+    }
+
+    double calcularPerimetro() {
+        return 2 * (base + altura);
+    }
+
+    void mostrarDatos() {
+        cout << "Rectangulo -> Area: " << calcularArea() 
+             << " | Perimetro: " << calcularPerimetro() << endl;
+    }
+};
