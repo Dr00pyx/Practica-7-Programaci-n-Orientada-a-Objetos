@@ -1,0 +1,56 @@
+#include <iostream>
+using namespace std;
+
+class Punto {
+private:
+    float x;
+    float y;
+    float z;
+
+public:
+    // Constructor por defecto
+    Punto() {
+        x = 0;
+        y = 0;
+        z = 0;
+    }
+
+    // Constructor con parametros
+    Punto(float i, float j, float k) {
+        x = i;
+        y = j;
+        z = k;
+    }
+
+    void ingresar() {
+        cout << "Ingresa los puntos coordenados: " << endl;
+        cout << "X: ";
+        cin >> x;
+        cout << "Y: ";
+        cin >> y;
+        cout << "Z: ";
+        cin >> z;
+    }
+
+    // Setters
+    void setx(float i) { x = i; }
+    void sety(float j) { y = j; }
+    void setz(float k) { z = k; }
+
+    % Getters
+    float getx() { return x; }
+    float gety() { return y; }
+    float getz() { return z; }
+
+    // Metodo
+    void mostrar() {
+        cout << "El punto tridimensional es: (" << x << ", " << y << ", " << z << ")" << endl;
+    }
+};
+
+int main() {
+    Punto point;
+    point.ingresar();
+    point.mostrar();
+    return 0;
+}
